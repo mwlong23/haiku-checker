@@ -13,6 +13,9 @@ export class Haiku {
 
   returnsEachRow(haiku) {
     let rows = haiku.split("\n");
+    this.line1 = rows[0];
+    this.line2 = rows[1];
+    this.line3 = rows[2];
     return rows;
     // let rows = (haiku.match(/\n/g)||[])
     // return rows;
