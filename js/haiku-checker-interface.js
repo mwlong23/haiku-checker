@@ -7,7 +7,6 @@ $(document).ready(function(){
      event.preventDefault();
     var enteredHaiku = $("#haiku").val();
     var correctLength = haiku.hasThreeLines(enteredHaiku);
-    debugger;
 
   });
 });
