@@ -2,7 +2,14 @@ export class Haiku {
   constructor(){
   }
 
-  hasThreeLines() {
-    console.log("3 lines")
+  hasThreeLines(haiku) {
+    var newLines = (haiku.match(/\n/g)||[]).length
+    if (newLines == 2) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
+
+// exports.haikuModule = Haiku

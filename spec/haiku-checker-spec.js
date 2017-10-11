@@ -1,4 +1,5 @@
-import { Haiku } from './../js/haikuChecker.js';
+import { Haiku } from './../js/haiku-checker.js';
+// var Haiku = require('./../js/haiku-checker.js').converterModule
 
 describe ('Haiku', function(){
   let haiku;
