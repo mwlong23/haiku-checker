@@ -4,30 +4,37 @@ import { Haiku } from './../js/haiku-checker.js';
 describe ('Haiku', function(){
   let haiku;
 
+  let passingHaiku = "1\n,2\n,3"
+  let failingHaiku = "1\n,2\n,3\n,4"
+
   beforeEach(function(){
     haiku = new Haiku()
   });
 
   it('should only contain three lines', function(){
-    expect(haiku.hasThreeLines()).toEqual(true)
+    expect(haiku.hasThreeLines(passingHaiku)).toEqual(true)
+  });
+  it('shouldn\'t contain more than three lines', function(){
+    expect(haiku.hasThreeLines(failingHaiku)).toEqual(false)
   });
 
-  // it('each word must have a vowel', function(){
-  //   expect(haiku.hasAVowel()).toEqual(true)
-  // });
-  //
-  // it('if the vowel is silent', function(){
-  //   expect(haiku.hasSilentVowel()).toEqual(true)
-  // });
-  //
-  // it('counts the vowels in a word', function(){
-  //   expect(haiku.numberOfVowels("true")).toEqual(2)
-  // });
-  //
+  it('each word must have a vowel', function(){
+    expect(haiku.hasVowel("sony")).toEqual(true)
+  });
+
+  it('cheks for silent vowels', function(){
+    var testWord = "rake"
+    expect(haiku.hasSilentVowel(testWord)).toEqual(true)
+  });
+
+  it('counts the vowels in a word', function(){
+    expect(haiku.numberOfVowels("true")).toEqual(2)
+  });
+  // 
   // it('subtracts the silent vowels', function(){
   //   expect(haiku.subtractSilentVowels("true")).toEqual(1)
   // });
-  //
+
   // it('diphthongs will count as one vowel', function(){
   //   expect(haiku.DiphthongsOneVowel("China")).toEqual(true)
   // });
