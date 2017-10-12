@@ -5,6 +5,8 @@ export class Haiku {
     this.line3;
   }
 
+
+
   hasThreeLines(haiku) {
     let newLines = (haiku.match(/\n/g)||[]).length
     return newLines == 2
@@ -19,13 +21,11 @@ export class Haiku {
   }
 
   splitRows(){
-    // for(let i=1; i < 3 ; i++){
       this.line1 = this.line1.split(" ");
       this.line2 = this.line2.split(" ");
       this.line3 = this.line3.split(" ");
-    // }
     return [this.line1, this.line2, this.line3];
-  }
+  };
 
 
   hasVowel(haiku) {
@@ -49,7 +49,7 @@ export class Haiku {
     } else{
       return 0;
     }
-  }
+  };
 
   numberOfVowels(haiku) {
     let vowels = haiku.match(/[aeiou]/gi);
@@ -68,16 +68,23 @@ export class Haiku {
     } else{
       return totalnumberVowels
     }
-  }
+  };
 
  checkFiveSevenFive(){
    let line1 = this.line1
    let line2 = this.line2
    let line3 = this.line3
-  //  return this.totalVowels(line3)
    return (this.totalVowels(line1) == 5 &&  this.totalVowels(line2)== 7 &&  this.totalVowels(line3)== 5);
-  //
+ };
+ //used for debugging to determine what the program "thinks" the vowel count per line is
+ syllablesPerLine(){
+   let line1 = this.line1
+   let line2 = this.line2
+   let line3 = this.line3
+  return (this.totalVowels(line1) +":"+ this.totalVowels(line2) + ":"+ this.totalVowels(line3))
+
  }
 };
+
 
 // exports.haikuModule = Haiku

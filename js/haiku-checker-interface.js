@@ -8,7 +8,7 @@ $(document).ready(function(){
     let assignLines = haiku.returnsEachRow(enteredHaiku)
     let correctLength = haiku.hasThreeLines(enteredHaiku);
     let correctSyllables = haiku.checkFiveSevenFive();
-    
+    debugger;
       if(correctLength && correctSyllables){
         $("#isHaiku").show();
         } else {
