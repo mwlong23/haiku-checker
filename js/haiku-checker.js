@@ -5,7 +5,6 @@ export class Haiku {
     this.line3;
   }
 
-
   hasThreeLines(haiku) {
     let newLines = (haiku.match(/\n/g)||[]).length
     return newLines == 2
@@ -16,46 +15,68 @@ export class Haiku {
     this.line1 = rows[0];
     this.line2 = rows[1];
     this.line3 = rows[2];
-    return rows;
-    // let rows = (haiku.match(/\n/g)||[])
-    // return rows;
+    return [this.line1,this.line2,this.line3];
   }
 
+  splitRows(){
+    // for(let i=1; i < 3 ; i++){
+      this.line1 = this.line1.split(" ");
+      this.line2 = this.line2.split(" ");
+      this.line3 = this.line3.split(" ");
+    // }
+    return [this.line1, this.line2, this.line3];
+  }
 
 
   hasVowel(haiku) {
     let vowels = haiku.match(/[aeiou]/g);
     return vowels.length > 0;
-  }
+  };
 
 
   hasSilentVowel(haiku) {
-    let silentVowel = haiku.match(/([aeiou])(?![aeiou])[a-z]e\b/g);
-    return silentVowel.length > 0;
-  }
-
-  numberOfVowels(haiku) {
-    let vowels = haiku.match(/[aeiou]/g);
-    return vowels.length;
-  }
-
-  totalVowels(haiku){
-    let silentVowels = this.hasSilentVowel(haiku)
-    let totalVowels = this.numberOfVowels(haiku)
-    if (silentVowels){
-       return totalVowels - 1
-    } else {
-      return totalVowels
+    let silentVowel = haiku.match(/([aeiouAEIOU])(?![aeiouAEIOU])[a-zA-Z]e\b/g);
+    if (silentVowel != null){
+      return silentVowel.length;
+    } else{
+      return 0;
+    }
+  };
+  doubleVowels(haiku){
+    let doubleVowels = haiku.match(/[aeiouAEIOU]{2}/g);
+    if (doubleVowels != null){
+      return doubleVowels.length;
+    } else{
+      return 0;
     }
   }
 
-  hasDipthong(haiku){
+  numberOfVowels(haiku) {
+    let vowels = haiku.match(/[aeiouAEIOU]/g);
+    return vowels.length;
+  };
 
+  totalVowels(haiku){
+    let silentVowels = this.hasSilentVowel(haiku)
+    let totalnumberVowels = this.numberOfVowels(haiku)
+    let countDoubleVowels = this.doubleVowels(haiku)
+    if (silentVowels>0){
+       return totalnumberVowels - silentVowels - countDoubleVowels
+    } else if(countDoubleVowels>0) {
+      return totalnumberVowels - countDoubleVowels
+    } else{
+      return totalnumberVowels
+    }
   }
 
-
-
-
+ checkFiveSevenFive(){
+   let line1 = this.line1
+   let line2 = this.line2
+   let line3 = this.line3
+  //  return this.totalVowels(line3)
+   return (this.totalVowels(line1) == 5 &&  this.totalVowels(line2)== 7 &&  this.totalVowels(line3)== 5);
+  //
+ }
 }
 
 // exports.haikuModule = Haiku

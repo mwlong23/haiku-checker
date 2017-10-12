@@ -6,7 +6,7 @@ describe ('Haiku', function(){
 
   let passingHaiku = "1\n,2\n,3"
   let failingHaiku = "1\n,2\n,3\n,4"
-  let numberRows = "I am first with five\nThen seven in the middle\nFive again to end."
+  let testHaiku = "I am one with five\nThen seven in the middle\nFive again to end."
 
   beforeEach(function(){
     haiku = new Haiku()
@@ -20,25 +20,42 @@ describe ('Haiku', function(){
     expect(haiku.hasThreeLines(failingHaiku)).toEqual(false)
   });
 
-  it('returns each row', function(){
-    expect(haiku.returnsEachRow(numberRows)).toEqual(["I am first with five","Then seven in the middle","Five again to end."])
+  it('should return each row', function(){
+    expect(haiku.returnsEachRow(testHaiku)).toEqual(["I am one with five","Then seven in the middle","Five again to end."])
   });
 
-  it('each word must have a vowel', function(){
+  it('should check to see that each word has a vowel', function(){
     expect(haiku.hasVowel("sony")).toEqual(true)
   });
 
-  it('cheks for silent vowels', function(){
-    var testWord = "rake"
-    expect(haiku.hasSilentVowel(testWord)).toEqual(true)
+  it('should check for silent vowels', function(){
+    let testWord = "rake"
+    expect(haiku.hasSilentVowel(testWord)).toEqual(1)
   });
 
-  it('counts the vowels in a word', function(){
+  it('should count the vowels in a word', function(){
     expect(haiku.numberOfVowels("true")).toEqual(2)
   });
 
-  it('subtracts the silent vowels', function(){
+  it('should subtract the silent vowels', function(){
     expect(haiku.totalVowels("make")).toEqual(1)
+  });
+
+  it('should split each row into an array of words', function(){
+    let splitHaiku = [['I', 'am', 'one', 'with', 'five'], ['Then', 'seven', 'in', 'the', 'middle'],['Five', 'again', 'to', 'end.']]
+    haiku.returnsEachRow(testHaiku)
+    expect(haiku.splitRows()).toEqual(splitHaiku)
+  });
+
+  it('should sum up vowels in a single row', function(){
+    haiku.returnsEachRow(testHaiku)
+    let line1=haiku.line1
+    expect(haiku.totalVowels(line1)).toEqual(5)
+  });
+  it('should return true if each line of a haiku contains the correct number of syllables', function(){
+    haiku.returnsEachRow(testHaiku)
+
+    expect(haiku.checkFiveSevenFive()).toEqual(true)
   });
 
   // it('diphthongs will count as one vowel', function(){
