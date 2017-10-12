@@ -52,11 +52,12 @@ export class Haiku {
   }
 
   numberOfVowels(haiku) {
-    let vowels = haiku.match(/[aeiouAEIOU]/g);
+    let vowels = haiku.match(/[aeiou]/gi);
     return vowels.length;
   };
 
   totalVowels(haiku){
+
     let silentVowels = this.hasSilentVowel(haiku)
     let totalnumberVowels = this.numberOfVowels(haiku)
     let countDoubleVowels = this.doubleVowels(haiku)
@@ -77,6 +78,6 @@ export class Haiku {
    return (this.totalVowels(line1) == 5 &&  this.totalVowels(line2)== 7 &&  this.totalVowels(line3)== 5);
   //
  }
-}
+};
 
 // exports.haikuModule = Haiku

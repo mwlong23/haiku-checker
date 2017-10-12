@@ -63,7 +63,7 @@ gulp.task("build", ['clean'], function(){
   } else {
     gulp.start('jsBrowserify');
   }
-  gulp.start('bower', 'cssBuild');
+  gulp.start('bower');
 });
 
 gulp.task('jshint', function(){
@@ -80,7 +80,7 @@ gulp.task('bowerJS', function () {
 });
 
 gulp.task('bowerCSS', function () {
-  return gulp.src(lib.ext('css').files)
+  return gulp.src(['css/*.css', ...lib.ext('css').files])
     .pipe(concat('vendor.css'))
     .pipe(gulp.dest('./build/css'));
 });
@@ -109,7 +109,7 @@ gulp.task('bowerBuild', ['bower'], function(){
 });
 
 gulp.task("cssBuild", function() {
-  gulp.src(['css/*.css'])
+  gulp.src(['css/*.css', ...lib.ext('css').files])
   .pipe(concat('vendor.css'))
   .pipe(gulp.dest('./build/css'))
 });

@@ -1,12 +1,18 @@
 import { Haiku } from './../js/haiku-checker.js';
 
 $(document).ready(function(){
-   var haiku = new Haiku();
-
    $("form").submit(function(event){
      event.preventDefault();
-    var enteredHaiku = $("#haiku").val();
-    var correctLength = haiku.hasThreeLines(enteredHaiku);
-
+    let haiku = new Haiku();
+    let enteredHaiku = $("#haiku").val();
+    let assignLines = haiku.returnsEachRow(enteredHaiku)
+    let correctLength = haiku.hasThreeLines(enteredHaiku);
+    let correctSyllables = haiku.checkFiveSevenFive();
+    
+      if(correctLength && correctSyllables){
+        $("#isHaiku").show();
+        } else {
+          $("#notHaiku").show();
+        }
   });
 });
